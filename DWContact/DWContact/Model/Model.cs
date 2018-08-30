@@ -6,11 +6,9 @@ using System.Threading.Tasks;
 
 namespace DWContact
 {
-    static class LogEvent
+    class Model
     {
-        public static void SetMessage(string message)
-        {
-            Console.WriteLine(message);
-        }
+
+
     }
 }

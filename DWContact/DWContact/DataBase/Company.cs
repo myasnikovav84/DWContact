@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace DWContact
 {
     [Serializable]
-    class Company
+    public class Company
     {
         public Company()
         {
@@ -16,18 +16,12 @@ namespace DWContact
 
         public Company(string name, string adress, string pfone, string info)
         {
-            try
-            {
-                Name = name ?? throw new ArgumentNullException(nameof(name));
-                Adress = adress ?? throw new ArgumentNullException(nameof(adress));
-                Pfone = pfone ?? throw new ArgumentNullException(nameof(pfone));
-                Info = info ?? throw new ArgumentNullException(nameof(info));
-            }
-            catch (ArgumentNullException e)
-            {
-                Dialog.Message("Company Add error", e.ToString());
-            }
-            Dialog.Message("Company Add", name);
+
+            Name = name;
+            Adress = adress;
+            Pfone = pfone;
+            Info = info;
+
         }
 
         /// <summary>

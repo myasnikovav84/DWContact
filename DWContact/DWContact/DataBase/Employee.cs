@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace DWContact
 {
     [Serializable]
-    class Employee
+    public class Employee
     {
         /// <summary>
         /// Имя
@@ -59,24 +59,16 @@ namespace DWContact
 
         public Employee(string name, string middleName, string surname, string pfone1, string pfone2, string pfone3, string adress, string pozition, Company company, string info) 
         {
-            try
-            {
-                Name = name ?? throw new ArgumentNullException(nameof(name));
-                MiddleName = middleName ?? throw new ArgumentNullException(nameof(middleName));
-                Surname = surname ?? throw new ArgumentNullException(nameof(surname));
-                Pfone1 = pfone1 ?? throw new ArgumentNullException(nameof(pfone1));
-                Pfone2 = pfone2 ?? throw new ArgumentNullException(nameof(pfone2));
-                Pfone3 = pfone3 ?? throw new ArgumentNullException(nameof(pfone3));
-                Adress = adress ?? throw new ArgumentNullException(nameof(adress));
-                Pozition = pozition ?? throw new ArgumentNullException(nameof(pozition));
-                Company = company ?? throw new ArgumentNullException(nameof(company));
-                Info = info ?? throw new ArgumentNullException(nameof(info));
-            }
-            catch (ArgumentNullException e)
-            {
-                Dialog.Message("Employee Add error", e.ToString());
-            }
-            Dialog.Message("Employee Add", $"{Name} {MiddleName} {Surname}");
+            Name = name;
+            MiddleName = middleName;
+            Surname = surname;
+            Pfone1 = pfone1;
+            Pfone2 = pfone2;
+            Pfone3 = pfone3;
+            Adress = adress;
+            Pozition = pozition;
+            Company = company;
+            Info = info;
         }
 
         public override string ToString() => $"{Surname} {Name.Substring(0, 1)}. {MiddleName.Substring(0, 1)}.";

@@ -60,8 +60,8 @@
       <SubType>Designer</SubType>
     </Page>
     <Compile Include="DataBase\Company.cs" />
+    <Compile Include="DataBase\DBManagerXML.cs" />
     <Compile Include="DataBase\Employee.cs" />
-    <Compile Include="DataBase\EmployeeList.cs" />
     <Compile Include="Model\Dialog.cs" />
     <Compile Include="Model\LogEvent.cs" />
     <Compile Include="App.xaml.cs">
@@ -74,6 +74,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Model\Model.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
