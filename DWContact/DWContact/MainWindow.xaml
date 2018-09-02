@@ -5,10 +5,54 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DWContact"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="Справочник" Height="376.136" Width="795.719">
+    <Window.Resources>
+        <ResourceDictionary Source="Dictionary1.xaml"/>
+    </Window.Resources>
     <Grid>
-        <Button Content="Button" HorizontalAlignment="Left" Margin="212,199,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click"/>
-        <Button Content="Button" HorizontalAlignment="Left" Margin="504,199,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click_1"/>
-
+        <Grid.RowDefinitions>
+            <RowDefinition Height="45"/> <!--без * - чтобы избежать автомасштабирования-->
+            <RowDefinition Height="90*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="80"/>
+            <!--без * - чтобы избежать автомасштабирования-->
+            <ColumnDefinition Width="25*"/>
+            <ColumnDefinition Width="25*"/>
+            <ColumnDefinition Width="40*"/>
+        </Grid.ColumnDefinitions>
+        <Grid Grid.Column="0"  Grid.Row="0"  Background="Gray" Grid.RowSpan="2" Grid.ColumnSpan="2" />
+        <Grid Grid.Column="2"  Grid.Row="0"  Background="LightGray" Grid.RowSpan="2"/>
+        <Grid Grid.Column="3"  Grid.Row="0"  Background="#f5f5f5" Grid.RowSpan="2"/>
+        <Label Content="Меню" Grid.Column="0" Style="{StaticResource HeaderStyle}" Background="Gray" />
+        <Label Content="Организации" Grid.Column="1" Style="{StaticResource HeaderStyle}" Background="Gray"/>
+        <Label Content="Сотрудники" Grid.Column="2" Style="{StaticResource HeaderStyle}" Background="LightGray"/>
+        <Label Content="Инфомация" Grid.Column="3" Style="{StaticResource HeaderStyle}" Background="#f5f5f5"/>
+        <StackPanel Grid.Column="0" Grid.Row="1">
+            <Button x:Name="btnAllEmployee" Style="{StaticResource MenuButton}" ToolTip="Все сотрудники" >
+                <Image Source="Media\Img\EmployeeAll.png"/>
+            </Button>
+            <Button x:Name="btnAddCompany" Style="{StaticResource MenuButton}" ToolTip="Добавить организацию">
+                <Image Source="Media\Img\DepartmentAdd.png"/>
+            </Button>
+            <Button x:Name="btnSettingsCompany" Style="{StaticResource MenuButton}" ToolTip="Редактировать организацию">
+                <Image Source="Media\Img\DepartmentSettings.png"/>
+            </Button>
+            <Button x:Name="btnRemoveCompany" Style="{StaticResource MenuButton}" ToolTip="Удалить организацию">
+                <Image Source="Media\Img\DepartmentRemove.png"/>
+            </Button>
+            <Button x:Name="btnAddEmployee" Style="{StaticResource MenuButton}" ToolTip="Добавить сотрудника">
+                <Image Source="Media\Img\EmployeeAdd.png"/>
+            </Button>
+            <Button x:Name="btnSettingsEmployee" Style="{StaticResource MenuButton}" ToolTip="Редактировать сотрудника">
+                <Image Source="Media\Img\EmployeeSettings.png"/>
+            </Button>
+            <Button x:Name="btnRemoveEmployee" Style="{StaticResource MenuButton}" ToolTip="Удалить сотрудника">
+                <Image Source="Media\Img\EmployeeRemove.png"/>
+            </Button>
+        </StackPanel>
+        <TextBlock x:Name="tbInfo" Style="{StaticResource tbInfo}"/>
+        <ListView x:Name="lvCompany" Style="{StaticResource lvCompany}"/>
+        <ListView x:Name="lvEmployee" Style="{StaticResource lvEmployee}"/>
     </Grid>
 </Window>

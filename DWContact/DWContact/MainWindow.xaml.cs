@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -18,26 +19,38 @@ namespace DWContact
     /// <summary>
     /// Логика взаимодействия для MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class MainWindow : Window, IMainView
     {
-        DBManagerXML managerXML;
+        MainPresenter mainPresenter;
         public MainWindow()
         {
             InitializeComponent();
-            managerXML = new DBManagerXML();
+
+            mainPresenter = new MainPresenter(this);
+            this.Loaded += delegate { mainPresenter.Load(); };
+
+            lvCompany.SelectionChanged += delegate { mainPresenter.SelectCompany(); };
+            lvEmployee.SelectionChanged += delegate { mainPresenter.SelectEmployee(); };
+
+            btnAllEmployee.Click += delegate { mainPresenter.SelectAll(); };
+
+            btnAddCompany.Click += delegate { mainPresenter.AddCompany(); };
+            btnSettingsCompany.Click += delegate { mainPresenter.SettingsCompany(); };
+            btnRemoveCompany.Click += delegate { mainPresenter.RemoveCompany(); };
+
+            btnAddEmployee.Click += delegate { mainPresenter.AddEmployee(); };
+            btnSettingsEmployee.Click += delegate { mainPresenter.SettingsEmployee(); };
+            btnRemoveEmployee.Click += delegate { mainPresenter.RemoveEmployee(); };
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            managerXML.SaveDBCompanies();
-            managerXML.SaveDBEmployees();
+        public ObservableCollection<string> CompanyList { set => lvCompany.ItemsSource = value; }
+        public ObservableCollection<string> EmployeeList { set => lvEmployee.ItemsSource = value; }
+        public string Info { set => tbInfo.Text = value; }
 
-        }
+        public string EmployeeItems => string.Join("", lvEmployee.SelectedItem);
+        public string CompanyItems => string.Join("", lvCompany.SelectedItem);
 
-        private void Button_Click_1(object sender, RoutedEventArgs e)
-        {
-            managerXML.LoadBDCompanies();
-            managerXML.LoadBDEmployees();
-        }
+        public int EmployeeIndex { get => lvEmployee.SelectedIndex; set => lvEmployee.SelectedIndex = value; }
+        public int CompanyIndex { get => lvCompany.SelectedIndex; set => lvCompany.SelectedIndex = value; }
     }
 }
